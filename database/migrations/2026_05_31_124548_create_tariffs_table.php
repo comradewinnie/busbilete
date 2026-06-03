@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('from_stop_id')->constrained('stops')->cascadeOnDelete();
             $table->foreignId('to_stop_id')->constrained('stops')->cascadeOnDelete();
             $table->decimal('price', 10, 2);
-            $table->string('status', 20)->default('active');
+            $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }
 

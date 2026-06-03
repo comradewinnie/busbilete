@@ -10,8 +10,6 @@ class Ticket extends Model
 {
     use HasUuids, SoftDeletes;
 
-    public $timestamps = false;
-
     const CREATED_AT = 'created_at';
     const UPDATED_AT = null;
 

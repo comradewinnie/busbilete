@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('status', 20)->default('scheduled');
+            $table->enum('status', ['scheduled', 'in_progress', 'completed', 'cancelled'])->default('scheduled');
             $table->foreignId('bus_id')->constrained()->cascadeOnDelete();
             $table->foreignId('trip_plan_id')->constrained()->cascadeOnDelete();
             $table->unique(['trip_plan_id', 'date']);
