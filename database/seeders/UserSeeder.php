@@ -49,16 +49,19 @@ class UserSeeder extends Seeder
             ['29885566', '*coolguy*'],
             ['28974543', 'imthebest'],
             ['25321652', 'newusernewpassword'],
+            ['29457632', '@Administrator123']
         ];
 
         $baseDate = Carbon::parse('2026-04-25 10:45:32');
         foreach ($data as [$phone, $plainPassword]) {
             $randomSeconds = rand(0, 2592000);
             $createdAt = $baseDate->copy()->subSeconds($randomSeconds);
-
+            $role = $phone === '29457632' ? 'admin' : 'passenger';
+            
             User::create([
                 'phone'      => $phone,
                 'password'   => Hash::make($plainPassword),
+                'role'       => $role,
                 'created_at' => $createdAt,
                 'updated_at' => $createdAt,
             ]);
