@@ -3,5 +3,7 @@
         Sākums
     </x-slot>
 
-    <h1>Laipni lūdzam!</h1>
+    <h2>Meklēt reisus</h2>
+
+    <x-searchbar :stops="$stops" />
 </x-layouts.app>

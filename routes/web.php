@@ -4,11 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\TicketController as AdminTicketController;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\HomeController;
 
 // Start page
 
-Route::view('/', 'home')
+Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+
+// Trip search
+
+Route::get('/trips', [TripController::class, 'index'])
+    ->name('trips.index');
+
+Route::get('/trips/{trip}', [TripController::class, 'show'])
+    ->name('trips.show');
 
 // Auth
 
