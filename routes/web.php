@@ -1,18 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 Route::view('/', 'home')
     ->name('home');
 
 Route::view('/login', 'auth.login')
-    ->middleware('guest')
     ->name('login');
 
+Route::post('/login', [AuthController::class, 'login'])
+    ->middleware('guest');
+
 Route::view('/register', 'auth.register')
-    ->middleware('guest')
     ->name('register');
 
-Route::post('/logout', fn() => redirect('/'))
+Route::post('/register', [AuthController::class, 'register'])
+    ->middleware('guest');
+
+Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');

@@ -1,13 +1,9 @@
 @if(session('success'))
-    <div>
-        {{ session('success') }}
-    </div>
+    <div>{{ session('success') }}</div>
 @endif
 
 @if(session('error'))
-    <div>
-        {{ session('error') }}
-    </div>
+    <div>{{ session('error') }}</div>
 @endif
 
 @if($errors->any())
