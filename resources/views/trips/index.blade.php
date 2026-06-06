@@ -39,7 +39,7 @@
                         <td>{{ $fromStop->departure_time }}</td>
                         <td>{{ $toStop->departure_time }}</td>
                         <td>{{ $tariff->price }} €</td>
-                        <td><a href="{{ route('trips.show', $trip->id) }}">Skatīt</a>
+                        <td><a href="{{ route('trips.show', ['trip' => $trip->id, 'from_stop_id' => request('from_stop_id'), 'to_stop_id' => request('to_stop_id'), 'date' => request('date')]) }}">Skatīt</a>
                         </td>
                     </tr>
                 @endforeach

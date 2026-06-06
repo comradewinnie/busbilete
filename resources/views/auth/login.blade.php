@@ -5,7 +5,6 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
         <div>
             <label for="phone">Telefona numurs</label>
             <input type="text" id="phone" name="phone" value="{{ old('phone') }}" required autofocus>

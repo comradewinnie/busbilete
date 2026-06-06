@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\TicketController as AdminTicketController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TicketController;
 
 // Start page
 
@@ -37,6 +39,34 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
+// User: profile
+
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->middleware('auth')
+    ->name('profile.show');
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])
+    ->middleware('auth')
+    ->name('profile.edit');
+
+Route::patch('/profile', [ProfileController::class, 'update'])
+    ->middleware('auth')
+    ->name('profile.update');
+
+Route::delete('/profile', [ProfileController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('profile.destroy');
+
+// User: tickets
+
+Route::get('/tickets', [TicketController::class, 'index'])
+    ->middleware('auth')
+    ->name('tickets.index');
+
+Route::get('/tickets/{ticket}', [TicketController::class, 'show'])
+    ->middleware('auth')
+    ->name('tickets.show');
 
 // Admin: dashboard
 

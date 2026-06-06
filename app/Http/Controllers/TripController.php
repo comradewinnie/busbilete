@@ -23,7 +23,7 @@ class TripController extends Controller
 
         $trips = Trip::where('date', $date->toDateString())
             ->where('status', 'scheduled')
-            ->with('tripPlan.route.stops')
+            ->with(['tripPlan.stops', 'tripPlan.route.carrier', 'tripPlan.route.tariffs', 'tripPlan.route.stops'])
             ->whereHas('tripPlan', fn($q) =>
                 $q->whereIn('schedule_type', $scheduleTypes)
             )
@@ -51,7 +51,13 @@ class TripController extends Controller
 
     public function show(Trip $trip)
     {
+        $trip->load(['tripPlan.route.carrier', 'tripPlan.route.stops', 'tripPlan.stops']);
         $stops = $trip->tripPlan->route->stops->sortBy('pivot.sequence_number');
-        return view('trips.show', compact('trip', 'stops'));
+
+        $from_stop_id = request('from_stop_id');
+        $to_stop_id = request('to_stop_id');
+        $date = request('date');
+        
+        return view('trips.show', compact('trip', 'stops', 'from_stop_id', 'to_stop_id', 'date'));
     }
 }

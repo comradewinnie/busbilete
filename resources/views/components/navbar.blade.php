@@ -4,7 +4,11 @@
 
         @auth
             <span>{{ auth()->user()->phone }}</span>
-            
+
+            <a href="{{ route('tickets.index') }}">Manas biļetes</a>
+
+            <a href="{{ route('profile.show') }}">Profils</a>
+
             @if(auth()->user()->isAdmin())
                 <a href="{{ route('admin.dashboard') }}">Administratora panelis</a>
             @endif

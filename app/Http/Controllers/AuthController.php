@@ -21,9 +21,9 @@ class AuthController extends Controller
             return redirect()->intended(route('home'));
         }
 
-        return back()->withErrors([
-            'phone' => 'Nepareizs telefona numurs vai parole.',
-        ]);
+        return back()
+            ->withInput($request->only('phone'))
+            ->withErrors(['phone' => 'Nepareizs telefona numurs vai parole.']);
     }
 
     public function register(Request $request)
