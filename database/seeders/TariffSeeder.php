@@ -19,19 +19,19 @@ class TariffSeeder extends Seeder
         foreach ($routeStops as $routeId => $stops) {
             $stops = $stops->values();
 
-            for ($i = 0; $i < $stops->count(); $i++) {
-                for ($j = $i + 1; $j < $stops->count(); $j++) {
-                    $from         = $stops[$i];
-                    $to           = $stops[$j];
+            for ($j = 1; $j < $stops->count(); $j++) {
+                for ($i = 0; $i < $j; $i++) {
+                    $from = $stops[$i];
+                    $to = $stops[$j];
                     $sequenceDiff = $to->sequence_number - $from->sequence_number;
-                    $price        = round(0.85 + ($sequenceDiff * 0.35), 2);
+                    $price = round(0.85 + ($sequenceDiff * 0.35), 2);
 
                     Tariff::create([
-                        'route_id'     => $routeId,
+                        'route_id' => $routeId,
                         'from_stop_id' => $from->stop_id,
-                        'to_stop_id'   => $to->stop_id,
-                        'price'        => $price,
-                        'status'       => 'active',
+                        'to_stop_id' => $to->stop_id,
+                        'price' => $price,
+                        'status' => 'active',
                     ]);
                 }
             }

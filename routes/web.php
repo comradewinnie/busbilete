@@ -8,6 +8,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\CartController;
 
 // Start page
 
@@ -67,6 +68,28 @@ Route::get('/tickets', [TicketController::class, 'index'])
 Route::get('/tickets/{ticket}', [TicketController::class, 'show'])
     ->middleware('auth')
     ->name('tickets.show');
+
+// Cart
+
+Route::get('/cart', [CartController::class, 'index'])
+->middleware('auth')
+    ->name('cart.index');
+
+Route::post('/cart', [CartController::class, 'add'])
+    ->middleware('auth')
+    ->name('cart.add');
+
+Route::patch('/cart/{key}', [CartController::class, 'updateCategory'])
+    ->middleware('auth')
+    ->name('cart.updateCategory');
+
+Route::delete('/cart/{key}', [CartController::class, 'remove'])
+    ->middleware('auth')
+    ->name('cart.remove');
+
+Route::view('/cart/checkout', 'cart.checkout')
+    ->middleware('auth')
+    ->name('cart.checkout');
 
 // Admin: dashboard
 

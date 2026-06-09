@@ -5,8 +5,8 @@
 
     <h1>Profils</h1>
 
-    <p>Telefons: {{ $user->phone }}</p>
-    <p>Reģistrēts: {{ $user->created_at->format('d.m.Y') }}</p>
+    <p><strong>Telefons:</strong> {{ $user->phone }}</p>
+    <p><strong>Reģistrēts:</strong> {{ $user->created_at->format('d.m.Y') }}</p>
 
     <a href="{{ route('profile.edit') }}">Rediģēt profilu</a>
 

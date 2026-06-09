@@ -3,10 +3,10 @@
         Lietotājs ar tel.nr. {{ $user->phone }}
     </x-slot>
 
-    <h1>Telefons: {{ $user->phone }}</h1>
-    <p>Loma: {{ $user->role }}</p>
-    <p>Reģistrēts: {{ $user->created_at->format('d.m.Y') }}</p>
-    <p>Statuss: {{ $user->trashed() ? 'Dzēsts' : 'Aktīvs' }}</p>
+    <h1>{{ $user->phone }}</h1>
+    <p><strong>Loma:</strong> {{ $user->role }}</p>
+    <p><strong>Reģistrēts:</strong> {{ $user->created_at->format('d.m.Y') }}</p>
+    <p><strong>Statuss:</strong> {{ $user->trashed() ? 'Dzēsts' : 'Aktīvs' }}</p>
 
     @if($user->trashed())
         <form method="POST" action="{{ route('admin.users.restore', $user->id) }}">

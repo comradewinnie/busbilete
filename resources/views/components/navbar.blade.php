@@ -13,6 +13,8 @@
                 <a href="{{ route('admin.dashboard') }}">Administratora panelis</a>
             @endif
 
+            <a href="{{ route('cart.index') }}">Grozs ({{ count(session('cart', [])) }})</a>
+
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit">Iziet</button>
