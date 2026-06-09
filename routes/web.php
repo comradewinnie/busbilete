@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 
 // Start page
 
@@ -87,9 +88,16 @@ Route::delete('/cart/{key}', [CartController::class, 'remove'])
     ->middleware('auth')
     ->name('cart.remove');
 
-Route::view('/cart/checkout', 'cart.checkout')
-    ->middleware('auth')
-    ->name('cart.checkout');
+// Checkout
+
+Route::post('/checkout', [PaymentController::class, 'createSession'])
+    ->name('checkout.create');
+
+Route::get('/payment/success', [PaymentController::class, 'success'])
+    ->name('payment.success');
+
+Route::get('/payment/cancel', [PaymentController::class, 'cancel'])
+    ->name('payment.cancel');
 
 // Admin: dashboard
 

@@ -57,7 +57,10 @@
 
         <p>Kopā: {{ number_format(collect($items)->sum('price'), 2) }} €</p>
 
-        <a href="{{ route('cart.checkout') }}">Maksāt</a>
+        <form method="POST" action="{{ route('checkout.create') }}">
+            @csrf
+            <button type="submit">Maksāt</button>
+        </form>
     @endif
 
     <a href="{{ route('home') }}">Turpināt iepirkšanos</a>
