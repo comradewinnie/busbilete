@@ -10,11 +10,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MapController;
 
 // Start page
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+
+Route::get('/bus-locations', [MapController::class, 'busLocations'])
+    ->name('map.busLocations');
 
 // Trip search
 
