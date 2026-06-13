@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Stop;
 use App\Models\Tariff;
 use App\Services\SeatAvailabilityService;
+use Illuminate\Support\Facades\Auth;
 
 class TripController extends Controller
 {
@@ -28,7 +29,7 @@ class TripController extends Controller
         $scheduleTypes = $date->isWeekend() ? ['weekends', 'daily'] : ['weekdays', 'daily'];
 
         $trips = Trip::where('date', $date->toDateString())
-            ->where('status', 'scheduled')
+            ->whereIn('status', ['scheduled', 'in_progress'])
             ->with(['tripPlan.stops', 'tripPlan.route.carrier', 'tripPlan.route.tariffs', 'tripPlan.route.stops'])
             ->whereHas('tripPlan', fn($q) =>
                 $q->whereIn('schedule_type', $scheduleTypes)
@@ -73,6 +74,10 @@ class TripController extends Controller
 
         $trip->load(['tripPlan.route.carrier', 'tripPlan.stops', 'bus']);
 
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user?->load('favoriteRoutes');
+        
         $tariff = Tariff::where('route_id', $trip->tripPlan->route_id)
             ->where('from_stop_id', $request->from_stop_id)
             ->where('to_stop_id', $request->to_stop_id)

@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\AccountRestoreController;
+use App\Http\Controllers\FavoriteController;
 
 // Start page
 
@@ -88,6 +89,20 @@ Route::get('/tickets', [TicketController::class, 'index'])
 Route::get('/tickets/{ticket}', [TicketController::class, 'show'])
     ->middleware('auth')
     ->name('tickets.show');
+
+// User: favorites
+
+Route::get('/favorites', [FavoriteController::class, 'index'])
+    ->middleware('auth')
+    ->name('favorites.index');
+
+Route::post('/favorites/{route}', [FavoriteController::class, 'store'])
+    ->middleware('auth')
+    ->name('favorites.store');
+    
+Route::delete('/favorites/{route}', [FavoriteController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('favorites.destroy');
 
 // Cart
 

@@ -22,7 +22,7 @@
         <div>
             <label for="date">Datums</label>
             <!-- <input type="date" id="date" name="date" min="{{ date('Y-m-d') }}" value="{{ old('date', request('date')) }}" required> – for real application --> 
-            <input type="date" id="date" name="date" value="{{ old('date', request('date')) }}" required>
+            <input type="date" id="date" name="date" value="{{ old('date', date('Y-m-d')) }}" required>
         </div>
 
         <button type="submit">Meklēt</button>

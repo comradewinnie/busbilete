@@ -74,8 +74,8 @@ class RouteStopSeeder extends Seeder
 
         foreach ($data as [$routeId, $stopId, $sequence]) {
             RouteStop::create([
-                'route_id'        => $routeId,
-                'stop_id'         => $stopId,
+                'route_id' => $routeId,
+                'stop_id' => $stopId,
                 'sequence_number' => $sequence,
             ]);
         }

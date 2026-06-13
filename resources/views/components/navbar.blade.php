@@ -7,6 +7,8 @@
 
             <a href="{{ route('tickets.index') }}">Manas biļetes</a>
 
+            <a href="{{ route('favorites.index') }}">Iecienītākie maršruti</a>
+
             <a href="{{ route('profile.show') }}">Profils</a>
 
             @if(auth()->user()->isAdmin())

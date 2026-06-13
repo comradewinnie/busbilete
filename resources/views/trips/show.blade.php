@@ -5,6 +5,7 @@
 
     <h2>Reiss</h2>
     <p><strong>Maršruts:</strong> {{ $trip->tripPlan->route->name }}</p>
+    <p><strong>Maršruta numurs:</strong> {{ $trip->tripPlan->route->number }}</p>
     <p><strong>Pārvadātājs:</strong> {{ $trip->tripPlan->route->carrier->name }}</p>
     <p><strong>Datums:</strong> {{ $trip->date->format('d.m.Y') }}</p>
     <h2>Pieturas</h2>
@@ -41,6 +42,23 @@
             </form>
         @else
             <p>Nav brīvu vietu.</p>
+        @endif
+
+        @php
+            $isFavorite = auth()->user()->favoriteRoutes->contains($trip->tripPlan->route_id);
+        @endphp
+
+        @if($isFavorite)
+            <form method="POST" action="{{ route('favorites.destroy', $trip->tripPlan->route_id) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Noņemt maršrutu no iecienītākajiem</button>
+            </form>
+        @else
+            <form method="POST" action="{{ route('favorites.store', $trip->tripPlan->route_id) }}">
+                @csrf
+                <button type="submit">Pievienot maršrutu iecienītākajiem</button>
+            </form>
         @endif
     @else
         <a href="{{ route('login') }}">Ieiet, lai iegādātos biļeti</a>

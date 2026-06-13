@@ -8,11 +8,12 @@
     <x-searchbar :stops="$stops" />
     
     @if($trips->isEmpty())
-        <p>Reisi nav atrasti.</p>
+        <p>Tiešie reisi nav atrasti.</p>
     @else
         <table>
             <thead>
                 <tr>
+                    <th>Nr.</th>
                     <th>Maršruts</th>
                     <th>Pārvadātājs</th>
                     <th>Atiešana</th>
@@ -35,6 +36,7 @@
                     @endphp
 
                     <tr>
+                        <td>{{ $trip->tripPlan->route->number }}</td>
                         <td>{{ $trip->tripPlan->route->name }}</td>
                         <td>{{ $trip->tripPlan->route->carrier->name }}</td>
                         <td>{{ $fromStop->departure_time }}</td>
