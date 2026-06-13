@@ -16,6 +16,13 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
+        $user = User::onlyTrashed()->where('phone', $credentials['phone'])->first();
+
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            session(['restore_user_id' => $user->id]);
+            return redirect()->route('account.restore.show');
+        }
+
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
             return redirect()->intended(route('home'));

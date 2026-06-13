@@ -11,6 +11,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\AccountRestoreController;
 
 // Start page
 
@@ -63,6 +64,20 @@ Route::patch('/profile', [ProfileController::class, 'update'])
 Route::delete('/profile', [ProfileController::class, 'destroy'])
     ->middleware('auth')
     ->name('profile.destroy');
+
+// Account restoration
+
+Route::get('/restore-account', [AccountRestoreController::class, 'show'])
+    ->middleware('guest')
+    ->name('account.restore.show');
+
+Route::post('/restore-account', [AccountRestoreController::class, 'restore'])
+    ->middleware('guest')
+    ->name('account.restore');
+
+Route::post('/restore-account/cancel', [AccountRestoreController::class, 'cancel'])
+    ->middleware('guest')
+    ->name('account.restore.cancel');
 
 // User: tickets
 
