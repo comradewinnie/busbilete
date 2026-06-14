@@ -15,5 +15,10 @@
     <p><strong>Cena:</strong> {{ number_format($ticket->price, 2) }} €</p>
     <p><strong>Iegādes laiks:</strong> {{ $ticket->created_at->format('d.m.Y H:i') }}</p>
 
+    <h2>Kvadrātkods</h2>
+    <div>
+        {!! QrCode::size(200)->generate($ticket->id) !!}
+    </div>
+
     <a href="{{ route('tickets.index') }}">Atpakaļ</a>
 </x-layouts.app>

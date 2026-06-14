@@ -3,11 +3,11 @@
         Sākums
     </x-slot>
 
-    <h2>Meklēt reisus</h2>
+    <h1>Meklēt reisus</h1>
 
     <x-searchbar :stops="$stops" />
 
-    <h2>Reāllaika autobusu karte</h2>
+    <h1>Reāllaika autobusu karte</h1>
 
     <div id="map" style="height: 500px;"></div>
 

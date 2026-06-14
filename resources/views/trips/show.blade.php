@@ -3,7 +3,7 @@
         Reiss
     </x-slot>
 
-    <h2>Reiss</h2>
+    <h1>Reiss</h1>
     <p><strong>Maršruts:</strong> {{ $trip->tripPlan->route->name }}</p>
     <p><strong>Maršruta numurs:</strong> {{ $trip->tripPlan->route->number }}</p>
     <p><strong>Pārvadātājs:</strong> {{ $trip->tripPlan->route->carrier->name }}</p>

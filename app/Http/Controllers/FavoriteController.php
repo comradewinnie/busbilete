@@ -11,7 +11,9 @@ class FavoriteController extends Controller
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        $routes = $user->favoriteRoutes()->with(['stops', 'carrier'])->get();
+        $routes = $user->favoriteRoutes()->with(['stops', 'carrier'])
+            ->orderBy('number')
+            ->get();
 
         return view('favorites.index', compact('routes'));
     }

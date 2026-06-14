@@ -3,7 +3,7 @@
         Kustību saraksts
     </x-slot>
 
-    <h2>Kustību saraksts</h2>
+    <h1>Kustību saraksts</h1>
 
     <x-searchbar :stops="$stops" />
     

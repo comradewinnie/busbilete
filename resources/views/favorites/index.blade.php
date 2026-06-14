@@ -11,7 +11,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Numurs</th>
+                    <th>Nr.</th>
                     <th>Maršruts</th>
                     <th>Pārvadātājs</th>
                     <th></th>
