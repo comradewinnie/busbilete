@@ -1,25 +1,25 @@
 <x-layouts.app>
     <x-slot name="title">
-        Kustību saraksts
+        {{ __('trips.title') }}
     </x-slot>
 
-    <h1>Kustību saraksts</h1>
+    <h1>{{ __('trips.title') }}</h1>
 
     <x-searchbar :stops="$stops" />
     
     @if($trips->isEmpty())
-        <p>Tiešie reisi nav atrasti.</p>
+        <p>{{ __('trips.not_found') }}</p>
     @else
         <table>
             <thead>
                 <tr>
-                    <th>Nr.</th>
-                    <th>Maršruts</th>
-                    <th>Pārvadātājs</th>
-                    <th>Atiešana</th>
-                    <th>Ierašanās</th>
-                    <th>Cena</th>
-                    <th>Brīvas vietas</th>
+                    <th>{{ __('trips.number') }}</th>
+                    <th>{{ __('trips.route') }}</th>
+                    <th>{{ __('trips.carrier') }}</th>
+                    <th>{{ __('trips.departure') }}</th>
+                    <th>{{ __('trips.arrival') }}</th>
+                    <th>{{ __('trips.price') }}</th>
+                    <th>{{ __('trips.seats') }}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -43,7 +43,7 @@
                         <td>{{ $toStop->departure_time }}</td>
                         <td>{{ $tariff->price }} €</td>
                         <td>{{ $trip->available_seats }}</td>
-                        <td><a href="{{ route('trips.show', ['trip' => $trip->id, 'from_stop_id' => request('from_stop_id'), 'to_stop_id' => request('to_stop_id'), 'date' => request('date')]) }}">Skatīt</a>
+                        <td><a href="{{ route('trips.show', ['trip' => $trip->id, 'from_stop_id' => request('from_stop_id'), 'to_stop_id' => request('to_stop_id'), 'date' => request('date')]) }}">{{ __('trips.view') }}</a>
                         </td>
                     </tr>
                 @endforeach

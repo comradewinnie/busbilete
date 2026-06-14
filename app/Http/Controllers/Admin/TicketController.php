@@ -33,12 +33,12 @@ class TicketController extends Controller
         $ticket = Ticket::withTrashed()->findOrFail($id);
 
         if ($ticket->trashed()) {
-            return back()->with('error', 'Biļete jau ir dzēsta.');
+            return back()->with('error', __('admin_tickets.already_deleted'));
         }
 
         $ticket->delete();
 
-        return back()->with('success', 'Biļete dzēsta.');
+        return back()->with('success', __('admin_tickets.is_deleted'));
     }
 
     public function restore(string $id)
@@ -46,11 +46,11 @@ class TicketController extends Controller
         $ticket = Ticket::withTrashed()->findOrFail($id);
 
         if (!$ticket->trashed()) {
-            return back()->with('error', 'Biļete nav dzēsta.');
+            return back()->with('error', __('admin_tickets.not_deleted'));
         }
 
         $ticket->restore();
 
-        return back()->with('success', 'Biļete atjaunota.');
+        return back()->with('success', __('admin_tickets.restored'));
     }
 }

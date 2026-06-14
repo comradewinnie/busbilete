@@ -35,12 +35,12 @@ class AccountRestoreController extends Controller
         session()->forget('restore_user_id');
         
         Auth::login($user);
-        return redirect()->route('home')->with('success', 'Konts ir atjaunots.');
+        return redirect()->route('home')->with('success', __('auth.restored'));
     }
 
     public function cancel()
     {
         session()->forget('restore_user_id');
-        return redirect()->route('login')->with('error', 'Konts netika atjaunots.');
+        return redirect()->route('login')->with('error', __('auth.not_restored'));
     }
 }

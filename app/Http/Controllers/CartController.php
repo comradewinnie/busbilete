@@ -58,7 +58,7 @@ class CartController extends Controller
         );
 
         if ($availableSeats <= 0) {
-            return back()->with('error', 'Nav brīvu vietu šajā reisā.');
+            return back()->with('error', __('cart.no_seats'));
         }
 
         $defaultCategory = TicketCategory::firstWhere('name', 'Parastā');
@@ -72,7 +72,7 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
-        return redirect()->back()->with('success', 'Biļete pievienota grozam.');
+        return redirect()->back()->with('success', __('cart.added'));
     }
 
     public function updateCategory(Request $request, string $key)
@@ -84,13 +84,13 @@ class CartController extends Controller
         $cart = session('cart', []);
 
         if (!isset($cart[$key])) {
-            return back()->with('error', 'Biļete nav atrasta.');
+            return back()->with('error', __('cart.not_found'));
         }
 
         $cart[$key]['ticket_category_id'] = $request->ticket_category_id;
         session(['cart' => $cart]);
 
-        return back()->with('success', 'Kategorija mainīta.');
+        return back()->with('success', __('cart.category_changed'));
     }
 
     public function remove(string $key)
@@ -99,6 +99,6 @@ class CartController extends Controller
         unset($cart[$key]);
         session(['cart' => $cart]);
 
-        return back()->with('success', 'Biļete noņemta no groza.');
+        return back()->with('success', __('cart.removed'));
     }
 }

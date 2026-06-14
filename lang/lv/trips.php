@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'title' => 'Kustību saraksts',
+    'show_title' => 'Reiss',
+    'number' => 'Nr.',
+    'route_number' => 'Maršruta numurs',
+    'route' => 'Maršruts',
+    'departure' => 'Atiešana',
+    'arrival' => 'Ierašanās',
+    'price' => 'Cena',
+    'seats' => 'Brīvas vietas',
+    'view' => 'Skatīt',
+    'not_found' => 'Tiešie reisi nav atrasti.',
+    'back' => 'Atpakaļ',
+    'carrier' => 'Pārvadātājs',
+    'date' => 'Datums',
+    'stops' => 'Pieturas',
+    'stop' => 'Pietura',
+    'time' => 'Laiks',
+    'your_route' => 'Jūsu maršruts',
+    'from' => 'No',
+    'to' => 'Līdz',
+    'seats_2' => 'Palika sēdvietu',
+    'add_cart' => 'Pievienot grozam',
+    'no_seats' => 'Nav brīvu vietu šajā reisā.',
+    'login' => 'Ieiet, lai iegādātos biļeti',
+    'favorite'   => 'Pievienot maršrutu iecienītākajiem',
+    'unfavorite' => 'Noņemt maršrutu no iecienītākajiem'
+];

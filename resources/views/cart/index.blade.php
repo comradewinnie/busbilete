@@ -1,24 +1,24 @@
 <x-layouts.app>
     <x-slot name="title">
-        Grozs
+        {{ __('cart.title') }}
     </x-slot>
 
-    <h1>Grozs</h1>
+    <h1>{{ __('cart.title') }}</h1>
 
     @if(empty($items))
-        <p>Grozs ir tukšs.</p>
+        <p>{{ __('cart.empty') }}</p>
     @else
         <table>
             <thead>
                 <tr>
-                    <th>Maršruts</th>
-                    <th>No</th>
-                    <th>Laiks</th>
-                    <th>Līdz</th>
-                    <th>Laiks</th>
-                    <th>Datums</th>
-                    <th>Kategorija</th>
-                    <th>Cena</th>
+                    <th>{{ __('cart.route') }}</th>
+                    <th>{{ __('cart.from') }}</th>
+                    <th>{{ __('cart.time') }}</th>
+                    <th>{{ __('cart.to') }}</th>
+                    <th>{{ __('cart.time') }}</th>
+                    <th>{{ __('cart.date') }}</th>
+                    <th>{{ __('cart.category') }}</th>
+                    <th>{{ __('cart.price') }}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -47,7 +47,7 @@
                             <form method="POST" action="{{ route('cart.remove', $key) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Noņemt</button>
+                                <button type="submit">{{ __('cart.remove') }}</button>
                             </form>
                         </td>
                     </tr>
@@ -59,9 +59,9 @@
 
         <form method="POST" action="{{ route('checkout.create') }}">
             @csrf
-            <button type="submit">Maksāt</button>
+            <button type="submit">{{ __('cart.checkout') }}</button>
         </form>
     @endif
 
-    <a href="{{ route('home') }}">Turpināt iepirkšanos</a>
+    <a href="{{ route('home') }}">{{ __('cart.continue') }}</a>
 </x-layouts.app>

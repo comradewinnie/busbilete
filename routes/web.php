@@ -22,6 +22,15 @@ Route::get('/', [HomeController::class, 'index'])
 Route::get('/bus-locations', [MapController::class, 'busLocations'])
     ->name('map.busLocations');
 
+// Language switcher
+
+Route::post('/locale/{locale}', function (string $locale) {
+    if (in_array($locale, config('app.available_locales'))) {
+        session(['locale' => $locale]);
+    }
+    return back();
+})->name('locale.switch');
+
 // Trip search
 
 Route::get('/trips', [TripController::class, 'index'])

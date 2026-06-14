@@ -24,13 +24,13 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'phone'            => 'required|string|max:20|unique:users,phone,' . $user->id,
+            'phone' => 'required|string|max:20|unique:users,phone,' . $user->id,
             'current_password' => 'required|string',
-            'password'         => 'nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         if (!Hash::check($validated['current_password'], $user->password)) {
-            return back()->withErrors(['current_password' => 'Pašreizējā parole nav pareiza.']);
+            return back()->withErrors(['current_password' => __('profile.incorrect_credentials')]);
         }
 
         $user->phone = $validated['phone'];
@@ -41,7 +41,7 @@ class ProfileController extends Controller
         
         $user->save();
 
-        return redirect()->route('profile.show')->with('success', 'Profils atjaunināts.');
+        return redirect()->route('profile.show')->with('success', __('profile.updated'));
     }
 
     public function destroy(Request $request)
@@ -55,6 +55,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')->with('success', 'Konts dzēsts.');
+        return redirect()->route('home')->with('success', __('profile.deleted'));
     }
 }

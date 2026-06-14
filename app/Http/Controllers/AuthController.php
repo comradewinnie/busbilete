@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         return back()
             ->withInput($request->only('phone'))
-            ->withErrors(['phone' => 'Nepareizs telefona numurs vai parole.']);
+            ->withErrors(['phone' => __('auth.incorrect_credentials')]);
     }
 
     public function register(Request $request)
@@ -52,9 +52,11 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        $locale = session('locale', config('app.locale'));
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('home');
+        return redirect()->route('home')->withCookie(cookie('guest_locale', $locale, 525600));;
     }
 }

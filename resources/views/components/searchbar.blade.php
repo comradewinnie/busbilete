@@ -1,8 +1,8 @@
 <form method="GET" action="{{ route('trips.index') }}">
         <div>
-            <label for="from_stop_id">No</label>
+            <label for="from_stop_id">{{ __('searchbar.from') }}</label>
             <select name="from_stop_id" id="from_stop_id" required>
-                <option value="">— izvēlieties —</option>
+                <option value="">{{ __('searchbar.select') }}</option>
                 @foreach($stops as $stop)
                     <option value="{{ $stop->id }}" {{ old('from_stop_id', request('from_stop_id')) == $stop->id ? 'selected' : '' }}>{{ $stop->name }}</option>
                 @endforeach
@@ -10,9 +10,9 @@
         </div>
 
         <div>
-            <label for="to_stop_id">Līdz</label>
+            <label for="to_stop_id">{{ __('searchbar.to') }}</label>
             <select name="to_stop_id" id="to_stop_id" required>
-                <option value="">— izvēlieties —</option>
+                <option value="">{{ __('searchbar.select') }}</option>
                 @foreach($stops as $stop)
                     <option value="{{ $stop->id }}" {{ old('to_stop_id', request('to_stop_id')) == $stop->id ? 'selected' : '' }}>{{ $stop->name }}</option>
                 @endforeach
@@ -20,10 +20,10 @@
         </div>
 
         <div>
-            <label for="date">Datums</label>
+            <label for="date">{{ __('searchbar.date') }}</label>
             <!-- <input type="date" id="date" name="date" min="{{ date('Y-m-d') }}" value="{{ old('date', request('date')) }}" required> – for real application --> 
             <input type="date" id="date" name="date" value="{{ old('date', request('date', date('Y-m-d'))) }}" required>
         </div>
 
-        <button type="submit">Meklēt</button>
+        <button type="submit">{{ __('searchbar.search') }}</button>
 </form>

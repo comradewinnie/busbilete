@@ -29,12 +29,12 @@ class UserController extends Controller
         $user = User::withTrashed()->findOrFail($id);
 
         if ($user->trashed()) {
-            return back()->with('error', 'Lietotājs jau ir dzēsts.');
+            return back()->with('error', __('admin_users.already_deleted'));
         }
 
         $user->delete();
 
-        return back()->with('success', 'Lietotājs dzēsts.');
+        return back()->with('success', __('admin_users.is_deleted'));
     }
 
     public function restore(string $id)
@@ -42,11 +42,11 @@ class UserController extends Controller
         $user = User::withTrashed()->findOrFail($id);
 
         if (!$user->trashed()) {
-            return back()->with('error', 'Lietotājs nav dzēsts.');
+            return back()->with('error', __('admin_users.not_deleted'));
         }
 
         $user->restore();
 
-        return back()->with('success', 'Lietotājs atjaunots.');
+        return back()->with('success', __('admin_users.restored'));
     }
 }

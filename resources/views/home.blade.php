@@ -1,13 +1,13 @@
 <x-layouts.app>
     <x-slot name="title">
-        Sākums
+        {{ __('home.page_title') }}
     </x-slot>
 
-    <h1>Meklēt reisus</h1>
+    <h1>{{ __('home.title') }}</h1>
 
     <x-searchbar :stops="$stops" />
 
-    <h1>Reāllaika autobusu karte</h1>
+    <h1>{{ __('home.live_map') }}</h1>
 
     <div id="map" style="height: 500px;"></div>
 
@@ -47,9 +47,9 @@
                         } else {
                             busMarkers[bus.bus_id] = L.marker(latlng, { icon: busIcon })
                                 .addTo(map)
-                                .bindPopup('Autobuss: ' + bus.plate + 
-                                           '<br>Maršruts: ' + bus.route + 
-                                           '<br>Atjaunots: ' + bus.timestamp);
+                                .bindPopup('{{ __('home.live_map_bus') }}: ' + bus.plate + 
+                                           '<br>{{ __('home.live_map_route') }}: ' + bus.route + 
+                                           '<br>{{ __('home.live_map_time') }}: ' + bus.timestamp);
                         }
                     });
                 });

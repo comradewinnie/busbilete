@@ -1,19 +1,19 @@
 <x-layouts.app>
     <x-slot name="title">
-        Iecienītākie maršruti
+        {{ __('favorites.title') }}
     </x-slot>
 
-    <h1>Iecienītākie maršruti</h1>
+    <h1>{{ __('favorites.title') }}</h1>
 
     @if($routes->isEmpty())
-        <p>Nav pievienotu maršrutu.</p>
+        <p>{{ __('favorites.empty') }}</p>
     @else
         <table>
             <thead>
                 <tr>
-                    <th>Nr.</th>
-                    <th>Maršruts</th>
-                    <th>Pārvadātājs</th>
+                    <th>{{ __('favorites.number') }}</th>
+                    <th>{{ __('favorites.route') }}</th>
+                    <th>{{ __('favorites.carrier') }}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -30,13 +30,13 @@
                                 $firstStop = $stops->first();
                                 $lastStop = $stops->last();
                             @endphp
-                            <a href="{{ route('trips.index', ['from_stop_id' => $firstStop->id, 'to_stop_id' => $lastStop->id, 'date' => date('Y-m-d')]) }}">Meklēt reisus</a>
+                            <a href="{{ route('trips.index', ['from_stop_id' => $firstStop->id, 'to_stop_id' => $lastStop->id, 'date' => date('Y-m-d')]) }}">{{ __('favorites.search') }}</a>
                         </td>
                         <td>
                             <form method="POST" action="{{ route('favorites.destroy', $route->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Noņemt</button>
+                                <button type="submit">{{ __('favorites.remove') }}</button>
                             </form>
                         </td>
                     </tr>

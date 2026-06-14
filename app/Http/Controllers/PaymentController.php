@@ -19,7 +19,7 @@ class PaymentController extends Controller
         $cartData = session('cart', []);
 
         if (empty($cartData)) {
-            return redirect()->route('cart.index')->with('error', 'Grozs ir tukšs.');
+            return redirect()->route('cart.index')->with('error', __('cart.empty'));
         }
 
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -49,10 +49,17 @@ class PaymentController extends Controller
             ];
         }
 
+        $total = collect($lineItems)->sum(fn($item) => $item['price_data']['unit_amount']);
+
+        if ($total < 50) {
+            return redirect()->route('cart.index')->with('error', __('cart.min_amount'));
+        }
+
         $stripeSession = StripeSession::create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
+            'locale' => app()->getLocale(),
             'success_url' => route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url'  => route('payment.cancel'),
         ]);
@@ -74,7 +81,7 @@ class PaymentController extends Controller
 
         if ($stripeSession->payment_status !== 'paid') {
             return redirect()->route('cart.index')
-                ->with('error', 'Maksājums netika pabeigts.');
+                ->with('error', __('cart.interrupted'));
         }
 
         $payment = Payment::create([
@@ -103,11 +110,11 @@ class PaymentController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('tickets.index')->with('success', 'Maksājums veiksmīgs! Biļetes ir pieejamas jūsu kontā.');
+        return redirect()->route('tickets.index')->with('success', __('cart.paid'));
     }
 
     public function cancel()
     {
-        return redirect()->route('cart.index')->with('error', 'Maksājums tika atcelts.');
+        return redirect()->route('cart.index')->with('error', __('cart.cancelled'));
     }
 }

@@ -24,7 +24,7 @@ class FavoriteController extends Controller
         $user = Auth::user();
         $user->favoriteRoutes()->syncWithoutDetaching([$route->id]);
 
-        return back()->with('success', 'Maršruts pievienots iecienītākajiem.');
+        return back()->with('success', __('favorites.added'));
     }
 
     public function destroy(Route $route)
@@ -33,6 +33,6 @@ class FavoriteController extends Controller
         $user = Auth::user();
         $user->favoriteRoutes()->detach($route->id);
 
-        return back()->with('success', 'Maršruts noņemts no iecienītākajiem.');
+        return back()->with('success', __('favorites.removed'));
     }
 }
