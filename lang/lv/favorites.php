@@ -6,6 +6,8 @@ return [
     'number' => 'Nr.',
     'route'=> 'Maršruts',
     'carrier' => 'Pārvadātājs',
+    'from' => 'No',
+    'to' => 'Līdz',
     'search' => 'Meklēt reisus',
     'remove' => 'Noņemt',
     'added' => 'Maršruts pievienots iecienītākajiem.',

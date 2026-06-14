@@ -12,9 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favorite_routes', function (Blueprint $table) {
-            $table->foreignId('route_id')->constrained()->cascadeOnDelete();
+            $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->primary(['user_id', 'route_id']);
+            $table->foreignId('route_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('from_stop_id')->constrained('stops')->cascadeOnDelete();
+            $table->foreignId('to_stop_id')->constrained('stops')->cascadeOnDelete();
+            $table->unique(['user_id', 'route_id', 'from_stop_id', 'to_stop_id']);
         });
     }
 

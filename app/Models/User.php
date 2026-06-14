@@ -27,9 +27,9 @@ class User extends Authenticatable
         return $this->hasMany(Ticket::class);
     }
 
-    public function favoriteRoutes(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function favoriteRoutes(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Route::class, 'favorite_routes');
+        return $this->hasMany(FavoriteRoute::class);
     }
 
     public function isAdmin(): bool

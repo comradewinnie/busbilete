@@ -45,11 +45,15 @@
         @endif
 
         @php
-            $isFavorite = auth()->user()->favoriteRoutes->contains($trip->tripPlan->route_id);
+            $favorite = auth()->user()->favoriteRoutes
+                ->where('route_id', $trip->tripPlan->route_id)
+                ->where('from_stop_id', $fromStop->id)
+                ->where('to_stop_id', $toStop->id)
+                ->first();
         @endphp
 
-        @if($isFavorite)
-            <form method="POST" action="{{ route('favorites.destroy', $trip->tripPlan->route_id) }}">
+        @if($favorite)
+            <form method="POST" action="{{ route('favorites.destroy', $favorite->id) }}">
                 @csrf
                 @method('DELETE')
                 <button type="submit">{{ __('trips.unfavorite') }}</button>
@@ -57,6 +61,8 @@
         @else
             <form method="POST" action="{{ route('favorites.store', $trip->tripPlan->route_id) }}">
                 @csrf
+                <input type="hidden" name="from_stop_id" value="{{ $fromStop->id }}">
+                <input type="hidden" name="to_stop_id" value="{{ $toStop->id }}">
                 <button type="submit">{{ __('trips.favorite') }}</button>
             </form>
         @endif

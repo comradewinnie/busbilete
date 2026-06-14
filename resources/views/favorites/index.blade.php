@@ -5,7 +5,7 @@
 
     <h1>{{ __('favorites.title') }}</h1>
 
-    @if($routes->isEmpty())
+    @if($favorites->isEmpty())
         <p>{{ __('favorites.empty') }}</p>
     @else
         <table>
@@ -14,26 +14,25 @@
                     <th>{{ __('favorites.number') }}</th>
                     <th>{{ __('favorites.route') }}</th>
                     <th>{{ __('favorites.carrier') }}</th>
+                    <th>{{ __('favorites.from') }}</th>
+                    <th>{{ __('favorites.to') }}</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($routes as $route)
+                @foreach($favorites as $favorite)
                     <tr>
-                        <td>{{ $route->number }}</td>
-                        <td>{{ $route->name }}</td>
-                        <td>{{ $route->carrier->name }}</td>
+                        <td>{{ $favorite->route->number }}</td>
+                        <td>{{ $favorite->route->name }}</td>
+                        <td>{{ $favorite->route->carrier->name }}</td>
+                        <td>{{ $favorite->fromStop->name }}</td>
+                        <td>{{ $favorite->toStop->name }}</td>
                         <td>
-                            @php
-                                $stops = $route->stops;
-                                $firstStop = $stops->first();
-                                $lastStop = $stops->last();
-                            @endphp
-                            <a href="{{ route('trips.index', ['from_stop_id' => $firstStop->id, 'to_stop_id' => $lastStop->id, 'date' => date('Y-m-d')]) }}">{{ __('favorites.search') }}</a>
+                            <a href="{{ route('trips.index', ['from_stop_id' => $favorite->from_stop_id, 'to_stop_id' => $favorite->to_stop_id, 'date' => date('Y-m-d')]) }}">{{ __('favorites.search') }}</a>
                         </td>
                         <td>
-                            <form method="POST" action="{{ route('favorites.destroy', $route->id) }}">
+                            <form method="POST" action="{{ route('favorites.destroy', $favorite->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">{{ __('favorites.remove') }}</button>

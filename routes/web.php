@@ -42,12 +42,14 @@ Route::get('/trips/{trip}', [TripController::class, 'show'])
 // Auth
 
 Route::view('/login', 'auth.login')
+    ->middleware('guest')
     ->name('login');
 
 Route::post('/login', [AuthController::class, 'login'])
     ->middleware('guest');
 
 Route::view('/register', 'auth.register')
+    ->middleware('guest')
     ->name('register');
 
 Route::post('/register', [AuthController::class, 'register'])
@@ -109,14 +111,14 @@ Route::post('/favorites/{route}', [FavoriteController::class, 'store'])
     ->middleware('auth')
     ->name('favorites.store');
     
-Route::delete('/favorites/{route}', [FavoriteController::class, 'destroy'])
+Route::delete('/favorites/{favoriteRoute}', [FavoriteController::class, 'destroy'])
     ->middleware('auth')
     ->name('favorites.destroy');
 
 // Cart
 
 Route::get('/cart', [CartController::class, 'index'])
-->middleware('auth')
+    ->middleware('auth')
     ->name('cart.index');
 
 Route::post('/cart', [CartController::class, 'add'])
@@ -134,12 +136,15 @@ Route::delete('/cart/{key}', [CartController::class, 'remove'])
 // Checkout
 
 Route::post('/checkout', [PaymentController::class, 'createSession'])
+    ->middleware('auth')
     ->name('checkout.create');
 
 Route::get('/payment/success', [PaymentController::class, 'success'])
+    ->middleware('auth')
     ->name('payment.success');
 
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])
+    ->middleware('auth')
     ->name('payment.cancel');
 
 // Admin: dashboard
