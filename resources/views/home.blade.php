@@ -3,13 +3,19 @@
         {{ __('home.page_title') }}
     </x-slot>
 
-    <h1>{{ __('home.title') }}</h1>
+    <div class="row g-5 my-2">
+        <div class="col-md-6 d-flex flex-column">
+            <h1 class="fw-bold text-danger mb-4 fs-2">{{ __('home.title') }}</h1>
+            <x-searchbar :stops="$stops" />
+        </div>
 
-    <x-searchbar :stops="$stops" />
-
-    <h1>{{ __('home.live_map') }}</h1>
-
-    <div id="map" style="height: 500px;"></div>
+        <div class="col-md-6">
+            <h1 class="fw-bold text-danger mb-4 fs-2">{{ __('home.live_map') }}</h1>
+            <div class="card border-0 overflow-hidden">
+                <div id="map" style="height: 480px;"></div>
+            </div>
+        </div>
+    </div>
 
     <script>
         const map = L.map('map').setView([56.9496, 24.1052], 9);

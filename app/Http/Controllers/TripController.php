@@ -18,6 +18,13 @@ class TripController extends Controller
     
     public function index(Request $request)
     {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user?->load('favoriteRoutes');
+
+        $fromStop = Stop::find(request('from_stop_id'));
+        $toStop = Stop::find(request('to_stop_id'));
+
         $request->validate([
             'from_stop_id' => 'required|exists:stops,id',
             'to_stop_id' => 'required|exists:stops,id|different:from_stop_id',
@@ -62,7 +69,7 @@ class TripController extends Controller
 
         $stops = Stop::orderBy('name')->get();
 
-        return view('trips.index', compact('trips', 'stops'));
+        return view('trips.index', compact('trips', 'stops', 'fromStop', 'toStop'));
     }
 
     public function show(Trip $trip, Request $request)
@@ -73,10 +80,6 @@ class TripController extends Controller
         ]);
 
         $trip->load(['tripPlan.route.carrier', 'tripPlan.stops', 'bus']);
-
-        /** @var \App\Models\User $user */
-        $user = Auth::user();
-        $user?->load('favoriteRoutes');
         
         $tariff = Tariff::where('route_id', $trip->tripPlan->route_id)
             ->where('from_stop_id', $request->from_stop_id)

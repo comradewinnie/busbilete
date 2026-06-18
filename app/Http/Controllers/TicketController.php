@@ -10,7 +10,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::where('user_id', Auth::id())
-            ->with(['trip.tripPlan.stops', 'tariff.fromStop', 'tariff.toStop'])
+            ->with(['trip.tripPlan.stops', 'tariff.fromStop', 'tariff.toStop', 'category', 'trip.tripPlan.route'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 

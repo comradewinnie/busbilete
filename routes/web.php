@@ -107,7 +107,7 @@ Route::get('/favorites', [FavoriteController::class, 'index'])
     ->middleware('auth')
     ->name('favorites.index');
 
-Route::post('/favorites/{route}', [FavoriteController::class, 'store'])
+Route::post('/favorites', [FavoriteController::class, 'store'])
     ->middleware('auth')
     ->name('favorites.store');
     

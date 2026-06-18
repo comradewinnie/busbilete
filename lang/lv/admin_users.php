@@ -5,7 +5,7 @@ return [
     'phone' => 'Telefons',
     'since' => 'Reģistrēts',
     'status' => 'Statuss',
-    'actions' => 'Darbības',
+    'view' => 'Skatīt',
     'deleted' => 'Dzēsts',
     'active' => 'Aktīvs',
     'restore' => 'Atjaunot',

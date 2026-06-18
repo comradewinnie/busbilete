@@ -7,6 +7,7 @@ use App\Models\Tariff;
 use App\Models\TicketCategory;
 use App\Models\Trip;
 use App\Services\SeatAvailabilityService;
+use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
@@ -18,7 +19,7 @@ class CartController extends Controller
     {
         $cartData = session('cart', []);
         $items = [];
-        $categories = TicketCategory::all();
+        $categories = TicketCategory::where('status', 'active')->get();
 
         foreach ($cartData as $key => $item) {
             $trip = Trip::with(['tripPlan.route', 'bus'])->find($item['trip_id']);
@@ -78,7 +79,12 @@ class CartController extends Controller
     public function updateCategory(Request $request, string $key)
     {
         $request->validate([
-            'ticket_category_id' => 'required|exists:ticket_categories,id',
+            'ticket_category_id' => [
+                'required',
+                Rule::exists('ticket_categories', 'id')->where(function ($query) {
+                    $query->where('status', 'active');
+                }),
+            ],
         ]);
 
         $cart = session('cart', []);

@@ -3,9 +3,6 @@
 return [
     'title' => 'Iecienītākie maršruti',
     'empty' => 'Nav pievienotu maršrutu.',
-    'number' => 'Nr.',
-    'route'=> 'Maršruts',
-    'carrier' => 'Pārvadātājs',
     'from' => 'No',
     'to' => 'Līdz',
     'search' => 'Meklēt reisus',

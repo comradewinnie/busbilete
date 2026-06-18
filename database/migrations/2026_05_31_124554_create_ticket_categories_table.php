@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100)->unique();
             $table->decimal('multiplier', 4, 3)->default(1.000);
+            $table->enum('status', ['active', 'inactive'])->default('active');
         });
     }
 

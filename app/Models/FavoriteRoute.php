@@ -10,15 +10,9 @@ class FavoriteRoute extends Model
 
     protected $fillable = [
         'user_id',
-        'route_id',
         'from_stop_id',
         'to_stop_id',
     ];
-
-    public function route(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Route::class);
-    }
 
     public function fromStop(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

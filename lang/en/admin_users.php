@@ -5,7 +5,7 @@ return [
     'phone' => 'Phone',
     'since' => 'Registered at',
     'status' => 'Status',
-    'actions' => 'Actions',
+    'view' => 'Show',
     'deleted' => 'Deleted',
     'active' => 'Active',
     'restore' => 'Restore',

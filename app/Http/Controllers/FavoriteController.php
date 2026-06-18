@@ -15,27 +15,20 @@ class FavoriteController extends Controller
         $user = Auth::user();
 
         $favorites = $user->favoriteRoutes()
-            ->with(['route.carrier', 'fromStop', 'toStop'])
+            ->with(['fromStop', 'toStop'])
             ->get();
 
         return view('favorites.index', compact('favorites'));
     }
 
-    public function store(Request $request, Route $route)
+    public function store(Request $request)
     {
         $request->validate([
             'from_stop_id' => 'required|exists:stops,id',
             'to_stop_id'   => 'required|exists:stops,id|different:from_stop_id',
         ]);
 
-        $routeStopIds = $route->stops->pluck('id');
-
-        if (!$routeStopIds->contains($request->from_stop_id) || !$routeStopIds->contains($request->to_stop_id)) {
-            abort(422);
-        }
-
         $exists = FavoriteRoute::where('user_id', Auth::id())
-            ->where('route_id', $route->id)
             ->where('from_stop_id', $request->from_stop_id)
             ->where('to_stop_id', $request->to_stop_id)
             ->exists();
@@ -43,7 +36,6 @@ class FavoriteController extends Controller
         if (!$exists) {
             FavoriteRoute::create([
                 'user_id'      => Auth::id(),
-                'route_id'     => $route->id,
                 'from_stop_id' => $request->from_stop_id,
                 'to_stop_id'   => $request->to_stop_id,
             ]);

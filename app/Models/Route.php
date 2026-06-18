@@ -36,9 +36,4 @@ class Route extends Model
     {
         return $this->hasMany(Tariff::class);
     }
-
-    public function favoritedByUsers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'favorite_routes');
-    }
 }

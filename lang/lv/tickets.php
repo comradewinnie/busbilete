@@ -5,6 +5,7 @@ return [
     'view_title' => 'Biļete',
     'empty' => 'Jums nav biļešu.',
     'route' => 'Maršruts',
+    'carrier' => 'Pārvadātājs',
     'from' => 'No',
     'to' => 'Līdz',
     'time' => 'Laiks',
@@ -13,6 +14,5 @@ return [
     'view' => 'Skatīt',
     'back' => 'Atpakaļ',
     'category' => 'Kategorija',
-    'purchase_time' => 'Iegādes laiks',
-    'qr' => 'Kvadrātkods'
+    'purchase_time' => 'Iegādes laiks'
 ];

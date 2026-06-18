@@ -3,9 +3,6 @@
 return [
     'title' => 'Favourite routes',
     'empty' => 'No saved routes.',
-    'number' => 'No.',
-    'route' => 'Route',
-    'carrier' => 'Carrier',
     'from' => 'From',
     'to' => 'To',
     'search' => 'Search trips',

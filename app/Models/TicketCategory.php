@@ -11,6 +11,7 @@ class TicketCategory extends Model
     protected $fillable = [
         'name',
         'multiplier',
+        'status'
     ];
 
     public function tickets(): \Illuminate\Database\Eloquent\Relations\HasMany
