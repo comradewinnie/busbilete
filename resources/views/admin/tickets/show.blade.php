@@ -20,7 +20,7 @@
 
                 <h1 class="fw-bold text-danger fs-2 mb-4 text-center">{{ __('admin_tickets.title_2') }}</h1>
 
-                <div class="row bg-light rounded p-3 mb-4 mx-0 align-items-center">
+                <div class="row bg-light rounded p-3 mb-4 mx-0 align-items-center text-center text-md-start">
                     <div class="col-md-5">
                         <div class="text-muted small">
                             <i class="bi bi-house-door text-danger me-1"></i>{{ __('tickets.from') }}
@@ -32,7 +32,8 @@
                     </div>
 
                     <div class="col-md-2 text-center fs-4">
-                        <i class="bi bi-arrow-right text-danger"></i>
+                        <i class="bi bi-arrow-right text-danger fs-4 d-none d-md-inline-block"></i>
+                        <i class="bi bi-arrow-down text-danger fs-4 d-inline-block d-md-none"></i>
                     </div>
                     
                     <div class="col-md-5 text-md-end">
@@ -69,7 +70,7 @@
                     </div>
                     <div class="col-6 text-end">
                         <div class="text-muted small">{{ __('admin_tickets.price') }}</div>
-                        <div class="fw-medium fs-5">{{ $ticket->price }} €</div>
+                        <div class="fw-medium fs-5 text-nowrap">{{ $ticket->price }} €</div>
                     </div>
                 </div>
 

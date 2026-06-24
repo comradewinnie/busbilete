@@ -3,7 +3,7 @@
         {{ __('home.page_title') }}
     </x-slot>
 
-    <div class="row g-5 my-2">
+    <div class="row g-4 g-md-5 my-2">
         <div class="col-md-6 d-flex flex-column">
             <h1 class="fw-bold text-danger mb-4 fs-2">{{ __('home.title') }}</h1>
             <x-searchbar :stops="$stops" />

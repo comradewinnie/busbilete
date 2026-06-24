@@ -3,7 +3,7 @@
         {{ __('trips.title') }}
     </x-slot>
 
-    <div class="row g-5 my-2">
+    <div class="row g-4 g-md-5 my-2">
         <div class="col-md-4">
             <div class="card border-0 sticky-top" style="top: 20px; z-index: 1020;">
                 <x-searchbar :stops="$stops" />
@@ -57,25 +57,26 @@
                         @endphp
 
                         <div>
-                            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
-                                <span class="text-muted small fw-medium">
+                            <div class="d-flex gap-4 justify-content-between align-items-center mb-2 px-1">
+                                <span class="text-muted text-wrap small fw-medium">
                                     <i class="bi bi-bus-front me-1 text-danger"></i> {{ $trip->tripPlan->route->carrier->name }}
                                 </span>
-                                <span class="badge bg-danger text-white fw-bold">{{ __('trips.number') }} {{ $trip->tripPlan->route->number }} : {{ $trip->tripPlan->route->name }}</span>
+                                <span class="badge bg-danger text-wrap col-6 col-md-auto text-white fw-bold">{{ __('trips.number') }} {{ $trip->tripPlan->route->number }} : {{ $trip->tripPlan->route->name }}</span>
                             </div>
 
                             <div class="card border-0 shadow-sm p-4">
-                                <div class="row align-items-center text-center text-md-start">
-                                    <div class="col-md-4">
+                                <div class="row align-items-center text-center text-md-start g-3">
+                                    
+                                    <div class="col-4 col-md-4">
                                         <div class="fs-3 fw-bold text-dark">{{ \Carbon\Carbon::parse($fromStop->departure_time)->format('H:i') }}</div>
                                         <div class="text-muted small text-truncate" title="{{ $fromStop->stop->name }}">{{ $fromStop->stop->name }}</div>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <i class="bi bi-arrow-right text-danger position-absolute top-50 start-50 translate-middle bg-white px-2 fs-4" style="margin-top: -1px;"></i>
+                                    <div class="col-4 col-md-4 text-center">
+                                        <i class="bi bi-arrow-right text-danger fs-3"></i>
                                     </div>
 
-                                    <div class="col-md-4 text-md-end">
+                                    <div class="col-4 col-md-4 text-end text-md-end">
                                         <div class="fs-3 fw-bold text-dark">{{ \Carbon\Carbon::parse($toStop->departure_time)->format('H:i') }}</div>
                                         <div class="text-muted small text-truncate" title="{{ $toStop->stop->name }}">{{ $toStop->stop->name }}</div>
                                     </div>
@@ -90,7 +91,7 @@
                                 </div>
                                 
                                 <div class="d-flex align-items-center gap-3">
-                                    <span class="fs-4 fw-bold text-danger">{{ $tariff->price }} €</span>
+                                    <span class="fs-4 fw-bold text-danger text-nowrap">{{ $tariff->price }} €</span>
                                     <a href="{{ route('trips.show', ['trip' => $trip->id, 'from_stop_id' => request('from_stop_id'), 'to_stop_id' => request('to_stop_id'), 'date' => request('date')]) }}" class="btn btn-outline-danger btn-sm fw-bold px-3">{{ __('trips.view') }}</a>
                                 </div>
                             </div>

@@ -10,7 +10,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::withTrashed()
-            ->orderBy('deleted_at')
             ->orderBy('created_at', 'desc')
             ->paginate(20);
 

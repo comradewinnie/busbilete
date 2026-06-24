@@ -26,7 +26,7 @@
                             <td class="text-dark">{{ $ticket->user->phone }}</td>
                             <td>{{ $ticket->trip->tripPlan->route->name }}</td>
                             <td class="text-muted small">{{ $ticket->trip->date->format('d.m.Y') }}</td>
-                            <td class="fw-medium text-dark">{{ number_format($ticket->price, 2) }} €</td>
+                            <td class="fw-medium text-dark text-nowrap">{{ number_format($ticket->price, 2) }} €</td>
                             <td>
                                 <span class="badge {{ $ticket->trashed() ? 'bg-secondary' : 'bg-success' }} fw-medium">{{ $ticket->trashed() ?  __('admin_tickets.deleted') : __('admin_tickets.active') }}</span>
                             </td>

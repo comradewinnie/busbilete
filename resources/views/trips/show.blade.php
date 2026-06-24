@@ -9,10 +9,10 @@
         </a>
     </div>
 
-    <div class="d-flex justify-content-between align-items-end mb-4 pb-2 border-bottom">
-        <div>
+    <div class="d-flex justify-content-between align-items-end mb-4 pb-2 gap-4 border-bottom">
+        <div class="w-50">
             <span class="text-muted small fw-medium">{{ __('trips.carrier') }}</span>
-            <h4 class="m-0">{{ $trip->tripPlan->route->carrier->name }}</h4>
+            <h4 class="m-0 text-truncate" title="{{ $trip->tripPlan->route->carrier->name }}">{{ $trip->tripPlan->route->carrier->name }}</h4>
         </div>
         <div class="text-end">
             <span class="text-muted small fw-medium">{{ __('trips.date') }}</span>
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="row g-5">
+    <div class="row g-4 g-md-5">
         <div class="col-md-5">
             <h3 class="text-danger mb-4 fs-4">{{ __('trips.stops') }}</h3>
             
@@ -34,8 +34,8 @@
                     <div class="position-relative mb-4">
                         <div class="position-absolute rounded-circle bg-white border border-danger" style="width: 14px; height: 14px; left: -32px; top: 6px; border-width: 3px !important; {{ $isUserFrom || $isUserTo ? 'background-color: #dc3545 !important;' : '' }}"></div>
                         
-                        <div class="d-flex justify-content-between align-items-baseline">
-                            <span class="fs-5 {{ $isUserFrom || $isUserTo ? 'text-danger fw-bold' : 'text-dark fw-medium' }}">{{ $stop->name }}</span>
+                        <div class="d-flex justify-content-between align-items-baseline gap-4">
+                            <span class="text-truncate fs-5 {{ $isUserFrom || $isUserTo ? 'text-danger fw-bold' : 'text-dark fw-medium' }}" title="{{ $stop->name }}">{{ $stop->name }}</span>
                             <span class="text-muted {{ $isUserFrom || $isUserTo ? 'fw-bold' : '' }}">{{ \Carbon\Carbon::parse($stopTime)->format('H:i') }}</span>
                         </div>
                     </div>
@@ -60,7 +60,8 @@
                         <div class="fw-bold fs-5 text-dark">{{ $fromStop->name }}</div>
                     </div>
                     <div class="col-md-2 text-center text-muted fs-4">
-                        <i class="bi bi-arrow-right text-danger"></i>
+                        <i class="bi bi-arrow-right text-danger d-none d-md-block"></i>
+                        <i class="bi bi-arrow-down text-danger d-block d-md-none"></i>
                     </div>
                     <div class="col-md-5 text-md-end">
                         <div class="text-muted small">
@@ -79,7 +80,7 @@
                     </div>
                     <div class="col-6 text-end">
                         <div class="text-muted small">{{ __('trips.price') }}</div>
-                        <div class="fw-bold fs-2 text-danger">{{ $tariff->price }} €</div>
+                        <div class="fw-bold fs-2 text-danger text-nowrap">{{ $tariff->price }} €</div>
                     </div>
                 </div>
 
