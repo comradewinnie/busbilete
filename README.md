@@ -1,58 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BusBiļete
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A simple [website](https://busbilete-production.up.railway.app) for viewing intercity bus routes in Latvia and purchasing tickets.
 
-## About Laravel
+> The website is supposed to show real trips, prices and GPS locations through integration with transport companies, but in this project some data was collected manually and hardcoded in the database for testing purposes. For example, trips were created only for June 12, 13 and 14, 2026.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## What was implemented?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* 🌐 Language selection
+* ☎️ Registration by phone number
+* 🗺️ AJAX map of buses and stops
+* 🚌 Trip search and adding favorite routes
+* 🛒 Ticket cart
+* 💳 Checkout
+* 🎟️ Generating a QR code for a ticket _(based on UUID)_
+* 🛡️ Admin dashboard with soft deletes
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnhologies used
 
-## Learning Laravel
+The system is written in **PHP 8.4** with the **Laravel 13.4** framework, using MVC approach. Data is stored in a **MySQL** database. Payments are processed through the **Stripe** sandbox. The **Leaflet** library is used to display the map. The QR code generators works through a **Simple QrCode** wrapper.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Screenshots
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Home page:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+<p><img height="350" src="screenshots/1.png"></p>
 
-## Agentic Development
+Timetable:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+<p><img height="350" src="screenshots/2.png"></p>
 
-```bash
-composer require laravel/boost --dev
+Trip info:
 
-php artisan boost:install
-```
+<p><img height="350" src="screenshots/3.png"></p>
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Ticket info:
 
-## Contributing
+<p><img height="350" src="screenshots/4.png"></p>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Cart:
 
-## Code of Conduct
+<p><img height="350" src="screenshots/5.png"></p>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Test credentials
 
-## Security Vulnerabilities
+This account has purchased tickets and added favorite routes:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Phone number: `20554433`<br>
+Password: `@parolefisj`<br>
 
-## License
+This account has admin rights:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Phone number: `29457632`<br>
+Password: `@Administrator123`
+
+____
+
+Created by [@comradewinnie](https://github.com/comradewinnie) in June 2026.
